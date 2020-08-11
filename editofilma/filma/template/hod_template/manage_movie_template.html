@@ -34,6 +34,7 @@ Menaxho Filmat
                       <th>Emri i Filmit</th>
                       <th>Platforma</th>
                       <th>Zhandrri</th>
+                      <th>IMDB</th>
                       <th>Data</th>
                       <th>Edito</th>
 
@@ -48,6 +49,7 @@ Menaxho Filmat
                       <td>{{ movie.movie_name }}</td>
                       <td>{{ movie.network_id.network_name }}</td>
                       <td>{{ movie.genre_id.genre_name }}</td>
+                      <td>{{ movie.imdb }}</td>
                       <td>{{ movie.data }}</td>
                       <td><a href="/edit_movie/{{ movie.id }}" class="btn btn-success">Edit</a>
                         <a href="/delete_movie/{{ movie.id }}" class="btn btn-danger">Fshij</a>

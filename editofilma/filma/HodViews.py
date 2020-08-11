@@ -104,13 +104,14 @@ def add_movie_save(request):
             network_id = form.cleaned_data["network"]
             describe_id = form.cleaned_data["describe"]
             data_id = form.cleaned_data["data"]
+            imdb_id=form.cleaned_data["imdb"]
 
             profile_pic = request.FILES['profile_pic']
             fs = FileSystemStorage()
             filename = fs.save(profile_pic.name, profile_pic)
             profile_pic_url = fs.url(filename)
             try:
-                movie = Filma(movie_name=movie_name,describe=describe_id, data=data_id)
+                movie = Filma(movie_name=movie_name,describe=describe_id, data=data_id ,imdb=imdb_id)
                 
                 movie.profile_pic=profile_pic_url
 
@@ -152,10 +153,11 @@ def edit_movie(request, movie_id):
     movie = Filma.objects.get(id=movie_id)
     form = EditMovieForm()
     form.fields['movie_name'].initial = movie.movie_name
-    form.fields['genre'].initial = movie.genre_id.genre_name
-    form.fields['network'].initial = movie.network_id.network_name
+    form.fields['genre'].initial = (movie.genre_id.id,movie.genre_id.genre_name)
+    form.fields['network'].initial =(movie.network_id.id,movie.network_id.network_name)
     form.fields['describe'].initial = movie.describe
     form.fields['data'].initial = movie.data
+    form.fields['imdb'].initial = movie.imdb
     return render(request, "hod_template/edit_movie_template.html", {"form": form, "id": movie_id, "movie_name": movie.movie_name})
 
 
@@ -174,6 +176,7 @@ def edit_movie_save(request):
             network_id = form.cleaned_data["network"]
             describe_id = form.cleaned_data["describe"]
             data_id = form.cleaned_data["data"]
+            imdb_id = form.cleaned_data["imdb"]
 
             if request.FILES.get('profile_pic', False):
                 profile_pic = request.FILES['profile_pic']
@@ -188,6 +191,7 @@ def edit_movie_save(request):
                 movie.movie_name = movie_name
                 movie.describe = describe_id
                 movie.data = data_id
+                movie.imdb= imdb_id
                 network = Network.objects.get(id=network_id)
                 movie.network_id = network
                 genre = Genre.objects.get(id=genre_id)

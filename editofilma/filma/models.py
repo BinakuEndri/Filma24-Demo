@@ -24,7 +24,10 @@ class Filma(models.Model):
     network_id=models.ForeignKey(Network,on_delete=models.SET_NULL,null=True)
     genre_id=models.ForeignKey(Genre,on_delete=models.SET_NULL,null=True)
     describe=models.TextField()
+    imdb=models.FloatField()
     data=models.DateField(auto_now_add=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
     objects=models.Manager()
+
+   

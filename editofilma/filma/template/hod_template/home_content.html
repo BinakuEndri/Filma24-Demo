@@ -90,7 +90,8 @@ Ballina
                 <p class="text-muted text-sm"><b>About: </b>{{ movie.describe }}</p>
                 <ul class="ml-4 mb-0 fa-ul text-muted">
                   <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>Platforma: {{ movie.network_id.network_name }}</li>
-                  <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Zhandrri: {{ movie.genre_id.genre_name }}</li>
+                  <li class="small"><span class="fa-li"><i class="fas fa-lg fa-film"></i></span> Zhandrri: {{ movie.genre_id.genre_name }}</li>
+                  <li class="small"><span class="fa-li"><i class="fab fa-lg fa-imdb"></i></span> IMDB: {{ movie.imdb }}</li>
                 </ul>
               </div>
               <div class="col-5 text-center">
@@ -99,7 +100,11 @@ Ballina
             </div>
           </div>
           <div class="card-footer">
-            <div class="text-right">
+            <div class="row">
+            <div class="col-6 text-left">
+              <p><b>{{ movie.data }}</b></p>
+            </div>
+            <div class="col-6 text-right">
               <a href="/delete_movie/{{ movie.id }}" class="btn btn-sm bg-teal">
                 <i class="fas fa-times"></i> Delete
               </a>
@@ -108,6 +113,7 @@ Ballina
               </a>
             </div>
           </div>
+        </div>
         </div>
       </div>
       {% endfor %}
