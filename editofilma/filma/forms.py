@@ -35,7 +35,7 @@ class AddMovieForm(forms.Form):
     
     genre=forms.ChoiceField(label="Zhandrri",choices=genre_list,widget=forms.Select(attrs={"class":"form-control"}))
     network=forms.ChoiceField(label="Platforma",choices=network_list,widget=forms.Select(attrs={"class":"form-control"}))
-    describe=forms.CharField(label="Pershkrimi",max_length=255,widget=forms.Textarea(attrs={"class":"form-control"}))
+    describe=forms.CharField(label="Pershkrimi",max_length=2000,widget=forms.Textarea(attrs={"class":"form-control"}))
     data = forms.DateField(label="Data",widget=DateInput(attrs={"class":"form-control"}))
     profile_pic=forms.FileField(label="Profile Pic",max_length=50,widget=forms.FileInput(attrs={"class":"form-control"}))
 
@@ -64,7 +64,7 @@ class EditMovieForm(forms.Form):
         
     genre=forms.ChoiceField(label="Zhandrri",choices=genre_list,widget=forms.Select(attrs={"class":"form-control"}))
     network=forms.ChoiceField(label="Platforma",choices=network_list,widget=forms.Select(attrs={"class":"form-control"}))
-    describe=forms.CharField(label="Pershkrimi",max_length=255,widget=forms.Textarea(attrs={"class":"form-control"}),required=False)
+    describe=forms.CharField(label="Pershkrimi",max_length=2000,widget=forms.Textarea(attrs={"class":"form-control"}),required=False)
     data = forms.DateField(label="Data",widget=DateInput(attrs={"class":"form-control"}))
     profile_pic=forms.FileField(label="Profile Pic",max_length=50,widget=forms.FileInput(attrs={"class":"form-control"}),required=False)
     

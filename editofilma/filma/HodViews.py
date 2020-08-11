@@ -152,8 +152,8 @@ def edit_movie(request, movie_id):
     movie = Filma.objects.get(id=movie_id)
     form = EditMovieForm()
     form.fields['movie_name'].initial = movie.movie_name
-    form.fields['genre'].initial = movie.movie_name
-    form.fields['network'].initial = movie.movie_name
+    form.fields['genre'].initial = movie.genre_id.genre_name
+    form.fields['network'].initial = movie.network_id.network_name
     form.fields['describe'].initial = movie.describe
     form.fields['data'].initial = movie.data
     return render(request, "hod_template/edit_movie_template.html", {"form": form, "id": movie_id, "movie_name": movie.movie_name})

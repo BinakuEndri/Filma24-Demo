@@ -47,4 +47,4 @@ urlpatterns = [
     path('edit_movie/<str:movie_id>', HodViews.edit_movie,name="edit_movie"),
     path('edit_movie_save', HodViews.edit_movie_save,name="edit_movie_save"),
 
-]
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
