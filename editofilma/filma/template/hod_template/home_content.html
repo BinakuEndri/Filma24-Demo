@@ -1,0 +1,205 @@
+
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Ballina
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+          <div class="col-lg-4 col-4">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ filma_count }}</h3>
+
+                <p>Numri i Filmave</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'manage_movie' %}" class="small-box-footer">Me shum Info<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-4">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{ network_count }}</h3>
+
+                <p>Numri i Platformave</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'manage_movie' %}" class="small-box-footer">Me shume info<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-4">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{ genre_count }}</h3>
+
+                <p>Numri i Zhandrreve</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'manage_movie' %}" class="small-box-footer">Me shume info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+         
+          <!-- ./col -->
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+             <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Numri Filmave Nga Platforat e Ndryshme </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="barChart3" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+      </div>
+      <div class="row">
+      {% for movie in movies %}
+
+      <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch" >
+        <div class="card bg-light" style="width: 600px;">
+          <div class="card-header text-muted border-bottom-0">
+            {{movie.id}}
+          </div>
+          <div class="card-body pt-0">
+            <div class="row">
+              <div class="col-7">
+                <h2 class="lead"><b>{{ movie.movie_name }}</b></h2>
+                <p class="text-muted text-sm"><b>About: </b>{{ movie.describe }}</p>
+                <ul class="ml-4 mb-0 fa-ul text-muted">
+                  <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>Platforma {{ movie.network_id.network_name }}</li>
+                  <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Zhandrri {{ movie.genre_id.genre_name }}</li>
+                </ul>
+              </div>
+              <div class="col-5 text-center">
+                <img src="{{ movie.profile_pic }}" alt="" class="img-circle img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="text-right">
+              <a href="#" class="btn btn-sm bg-teal">
+                <i class="fas fa-comments"></i>
+              </a>
+              <a href="#" class="btn btn-sm btn-primary">
+                <i class="fas fa-user"></i> View Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      </div>
+      </div>
+    </section>
+    
+{% endblock main_content %}
+{% block custom_js %}
+<script>
+    $(document).ready(function(){
+      var genre_name_list={{ genre_name_list|safe }};
+      var network_name_list={{ network_name_list|safe }};
+      var movie_network_list={{ movie_network_list }};
+      var movie_genre_list={{ movie_genre_list }};
+
+
+
+
+      var barChartData3 = {
+                          labels  : network_name_list,
+                          datasets: [
+                            {
+                              label               : 'Student',
+                              backgroundColor     : 'rgba(60,141,188,0.9)',
+                              borderColor         : 'rgba(60,141,188,0.8)',
+                              pointRadius          : false,
+                              pointColor          : '#3b8bba',
+                              pointStrokeColor    : 'rgba(60,141,188,1)',
+                              pointHighlightFill  : '#fff',
+                              pointHighlightStroke: 'rgba(60,141,188,1)',
+                              data                : movie_network_list
+                            },
+            
+                          ]
+                        }
+                        var barChartCanvas3 = $('#barChart3').get(0).getContext('2d')
+                        var temp0 = barChartData3.datasets[0]
+                       
+
+                        var barChartOptions3 = {
+                          responsive              : true,
+                          maintainAspectRatio     : false,
+                          datasetFill             : false
+                        }
+                        var barChart3 = new Chart(barChartCanvas3, {
+                          type: 'bar',
+                          data: barChartData3,
+                          options: barChartOptions3
+                        })
+
+      var barChart4 = new Chart(barChartCanvas4, {
+                          type: 'bar',
+                          data: barChartData4,
+                          options: barChartOptions4
+                        })
+                        var barChartData4 = {
+                          labels  : genre_name_list,
+                          datasets: [
+                            {
+                              label               : 'Student',
+                              backgroundColor     : 'rgba(60,141,188,0.9)',
+                              borderColor         : 'rgba(60,141,188,0.8)',
+                              pointRadius          : false,
+                              pointColor          : '#3b8bba',
+                              pointStrokeColor    : 'rgba(60,141,188,1)',
+                              pointHighlightFill  : '#fff',
+                              pointHighlightStroke: 'rgba(60,141,188,1)',
+                              data                : movie_genre_list
+                            },
+            
+                          ]
+                        }
+                        var barChartCanvas4 = $('#barChart5').get(0).getContext('2d')
+                        var temp0 = barChartData4.datasets[0]
+                       
+
+                        var barChartOptions4 = {
+                          responsive              : true,
+                          maintainAspectRatio     : false,
+                          datasetFill             : false
+                        }
+
+                        var barChart4 = new Chart(barChartCanvas4, {
+                          type: 'bar',
+                          data: barChartData4,
+                          options: barChartOptions4
+                        })
+
+
+    });
+</script>
+{% endblock custom_js %}
+

@@ -1,0 +1,101 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <img src="{% static "dist/img/AdminLTELogo.png" %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-light">FILMA 24 | DEMO</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+        <li class="nav-header" style=" padding: 1.0rem 1rem .5rem;">BALLINA</li>
+        <li class="nav-item">
+          {% url 'home' as home %}
+          <a href="{{ home }}" class="nav-link {% if request.path == home %} active {% endif %}">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Ballina
+            </p>
+          </a>
+        </li>
+        <li class="nav-header">FILMAT</li>
+        <li class="nav-item">
+          {% url 'add_movie' as add_movie %}
+          <a href="{{ add_movie }}" class="nav-link {% if request.path == add_staff %} active {% endif %}">
+            <i class="nav-icon far fa-plus-square"></i>
+            <p>
+              Shto Film
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'manage_movie' as manage_movie %}
+          {% url 'edit_movie' movie_id=id as edit_movie %}
+          <a href="{% url 'manage_movie' %}"
+            class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Menaxho Film
+            </p>
+          </a>
+        </li>
+        
+        
+        <li class="nav-header">ZHANDRRET</li>
+        <li class="nav-item">
+          {% url 'add_genre' as add_genre %}
+          <a href="{% url 'add_genre' %}" class="nav-link {% if request.path == add_genre %} active {% endif %}">
+            <i class="nav-icon far fa-plus-square"></i>
+            <p>
+              Shto Zhanderr
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'manage_genre' as manage_genre %}
+          {% url 'edit_genre' genre_id=id as edit_genre %}
+          <a href="{% url 'manage_genre' %}"
+            class="nav-link {% if request.path == manage_genre %} active {% endif %} {% if request.path == edit_genre %} active {% endif %}">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Menaxho Zhanderr
+            </p>
+          </a>
+        </li>
+        <li class="nav-header">PLATFORMA</li>
+        <li class="nav-item">
+          {% url 'add_network' as add_network %}
+          <a href="{% url 'add_network' %}" class="nav-link {% if request.path == add_network %} active {% endif %}">
+            <i class="nav-icon far fa-plus-square"></i>
+            <p>
+              Shto Platform
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'manage_network' as manage_network %}
+          {% url 'edit_network' network_id=id as edit_network %}
+          <a href="{% url 'manage_network' %}"
+            class="nav-link {% if request.path == manage_network %} active {% endif %} {% if request.path == edit_network %} active {% endif %} ">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Menaxho Platform
+            </p>
+          </a>
+        </li>
+     
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
