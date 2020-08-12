@@ -15,13 +15,17 @@ Edito Platform | Platforma: {{ network.network_name }}
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/edit_network_save" method="post">
+              <form role="form" action="/edit_network_save" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
                     <label>Emri i Platformes </label>
                     <input type="text" class="form-control" name="network" placeholder="Platforma" value="{{ network.network_name }}">
                     <input type="hidden"  name="network_id"  value="{{ network.id }}">
+                  </div>
+                  <div class="form-group">
+                    <label>foto</label>
+                    <input type="file" class="form-control" name="network_pic" placeholder="foto" value="{{ network.network_pic }}">
                   </div>
                    <div class="form-group">
                       {% if messages %}

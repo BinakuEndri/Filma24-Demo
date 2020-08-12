@@ -51,8 +51,12 @@ Menaxho Filmat
                       <td>{{ movie.genre_id.genre_name }}</td>
                       <td>{{ movie.imdb }}</td>
                       <td>{{ movie.data }}</td>
-                      <td><a href="/edit_movie/{{ movie.id }}" class="btn btn-success">Edit</a>
-                        <a href="/delete_movie/{{ movie.id }}" class="btn btn-danger">Fshij</a>
+                      <td><a href="/delete_movie/{{ movie.id }}" class="btn btn-sm bg-teal">
+                        <i class="fas fa-times"></i> Delete
+                      </a>
+                      <a href="/edit_movie/{{ movie.id }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-edit"></i> Edito
+                      </a></a>
                       </td>
                       
                     </tr>

@@ -39,8 +39,12 @@ Menaxho Zhandrret
                     <tr>
                       <td>{{ genre.id }}</td>
                       <td>{{ genre.genre_name }}</td>
-                      <td><a href="/edit_genre/{{ genre.id }}" class="btn btn-success">Edito</a>
-                        <a href="/delete_genre/{{ genre.id }}" class="btn btn-danger">Fshij</td>
+                      <td><a href="/delete_genre/{{ genre.id }}" class="btn btn-sm bg-teal">
+                        <i class="fas fa-times"></i> Delete
+                      </a>
+                      <a href="/edit_genre/{{ genre.id }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-edit"></i> Edito
+                      </a></td>
                     </tr>
                   {% endfor %}
                   </tbody>

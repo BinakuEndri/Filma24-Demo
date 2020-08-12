@@ -75,11 +75,17 @@ def add_network_save(request):
         return HttpResponse("Method Not Allowed")
     else:
         network = request.POST.get("network")
+        network_pic = request.FILES['network_pic']
+        fs = FileSystemStorage()
+        filename = fs.save(network_pic.name, network_pic)
+        network_pic_url = fs.url(filename)
+
         try:
-            network_model = Network(network_name=network)
+            network_model = Network(network_name=network,network_pic=network_pic_url)
             network_model.save()
             messages.success(request, "Successfully Added network")
             return HttpResponseRedirect(reverse("add_network"))
+
         except:
             messages.error(request, "Failed To Add network")
             return HttpResponseRedirect(reverse("add_network"))
@@ -266,10 +272,19 @@ def edit_network_save(request):
     else:
         network_id = request.POST.get("network_id")
         network_name = request.POST.get("network")
+        if request.FILES.get('network_pic', False):
+            network_pic = request.FILES['network_pic']
+            fs = FileSystemStorage()
+            filename = fs.save(network_pic.name, network_pic)
+            network_pic_url = fs.url(filename)
+        else:
+            network_pic_url = None
 
         try:
             network = Network.objects.get(id=network_id)
             network.network_name = network_name
+            if network_pic_url !=None:
+                network.network_pic=network_pic_url
             network.save()
             messages.success(request, "Successfully Edited genre")
             return HttpResponseRedirect(reverse("edit_network", kwargs={"network_id": network_id}))
