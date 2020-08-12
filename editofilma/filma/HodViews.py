@@ -180,8 +180,14 @@ def edit_movie(request, movie_id):
     movie = Filma.objects.get(id=movie_id)
     form = EditMovieForm()
     form.fields['movie_name'].initial = movie.movie_name
-    form.fields['genre'].initial = (movie.genre_id.id,movie.genre_id.genre_name)
-    form.fields['network'].initial =(movie.network_id.id,movie.network_id.network_name)
+    try:
+        form.fields['genre'].initial = (movie.genre_id.id,movie.genre_id.genre_name)
+    except:
+        pass
+    try:
+        form.fields['network'].initial =(movie.network_id.id,movie.network_id.network_name)
+    except:
+        pass
     form.fields['describe'].initial = movie.describe
     form.fields['data'].initial = movie.data
     form.fields['imdb'].initial = movie.imdb
@@ -318,3 +324,10 @@ def delete_network(request,network_id):
 
     network.delete()
     return render(request, "hod_template/manage_network_template.html", {"networks": networks})
+
+
+def view_movie(request,movie_id):
+    
+    movie = Filma.objects.get(id=movie_id)
+
+    return render(request,"hod_template/view_movie.html",{"movie":movie,"id":movie_id,})
