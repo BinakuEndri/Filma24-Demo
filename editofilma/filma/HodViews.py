@@ -135,12 +135,33 @@ def add_movie_save(request):
 
 def manage_genre(request):
     genres = Genre.objects.all()
-    return render(request, "hod_template/manage_genre_template.html", {"genres": genres})
+    genre_all=Genre.objects.all()
+    
+    genre_name_list=[]
+    movie_genre_list=[]
+    for genre in genre_all:
+        filma_n=Filma.objects.filter(genre_id=genre.id).count()
+        genre_name_list.append(genre.genre_name)
+        movie_genre_list.append(filma_n)
+
+
+    
+    return render(request, "hod_template/manage_genre_template.html", {"genres": genres,"movie_genre_list":movie_genre_list,"genre_name_list":genre_name_list})
 
 
 def manage_network(request):
     networks = Network.objects.all()
-    return render(request, "hod_template/manage_network_template.html", {"networks": networks})
+    network_all=Network.objects.all()
+
+
+    network_name_list=[]
+    movie_network_list=[]
+
+    for network in network_all:
+        filma=Filma.objects.filter(network_id=network.id).count()
+        network_name_list.append(network.network_name)
+        movie_network_list.append(filma)
+    return render(request, "hod_template/manage_network_template.html", {"networks": networks,"movie_network_list":movie_network_list,"network_name_list":network_name_list,})
 
 
 def manage_movie(request):
