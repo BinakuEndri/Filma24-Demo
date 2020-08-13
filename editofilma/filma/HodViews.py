@@ -9,6 +9,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
+
 from filma.models import Network, Genre, Filma
 from filma.forms import AddMovieForm, EditMovieForm
 
@@ -331,3 +332,4 @@ def view_movie(request,movie_id):
     movie = Filma.objects.get(id=movie_id)
 
     return render(request,"hod_template/view_movie.html",{"movie":movie,"id":movie_id,})
+

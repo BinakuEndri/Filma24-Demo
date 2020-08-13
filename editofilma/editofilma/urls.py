@@ -23,6 +23,7 @@ from django.views.generic import TemplateView
 
 from filma import HodViews
 from editofilma import settings
+from land import views
 
 
 urlpatterns = [
@@ -47,6 +48,10 @@ urlpatterns = [
     path('edit_movie/<str:movie_id>', HodViews.edit_movie,name="edit_movie"),
     path('edit_movie_save', HodViews.edit_movie_save,name="edit_movie_save"),
     path('view_movie/<str:movie_id>', HodViews.view_movie,name="view_movie"),
+
+    # LAND URL 
+
+    path('land_home',views.home_content,name="land_home")
 
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

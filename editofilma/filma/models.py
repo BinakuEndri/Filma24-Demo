@@ -7,7 +7,7 @@ class Network(models.Model):
     network_name=models.CharField(max_length=255)
     network_pic=models.FileField()
     created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
     objects=models.Manager()
 
 
@@ -15,7 +15,7 @@ class Genre(models.Model):
     id=models.AutoField(primary_key=True)
     genre_name=models.CharField(max_length=255)
     created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
     objects=models.Manager()
 
 class Filma(models.Model):
@@ -28,7 +28,9 @@ class Filma(models.Model):
     imdb=models.FloatField()
     data=models.DateField(auto_now_add=True)
     created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
     objects=models.Manager()
+
+
 
    
